@@ -1,0 +1,29 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Books I Have Read</title>
+    <link rel="stylesheet" href="{% static 'styles.css' %}">
+</head>
+<body>
+    <h1>List of Books I Have Read</h1>
+    <div class="input-container">
+        <form method="POST">
+            {% csrf_token %}
+            <input type="text" name="book_title" placeholder="Enter book title">
+            <button type="submit">ADD</button>
+        </form>
+    </div>
+
+    <div class="book-list">
+        <ol>
+            {% for book in books %}
+                <li>{{ book }}</li>
+            {% empty %}
+                <p>No books yet. Add one above!</p>
+            {% endfor %}
+        </ol>
+    </div>
+</body>
+</html>
